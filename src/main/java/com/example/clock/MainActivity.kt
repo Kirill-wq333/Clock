@@ -1,6 +1,5 @@
 package com.example.clock
 
-import android.graphics.drawable.Icon
 import android.icu.text.CaseMap.Title
 import android.media.Image
 import android.os.Bundle
@@ -20,8 +19,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.icons.Icons
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -40,8 +37,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavHost
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
 import com.example.clock.ui.theme.ClockTheme
 
 class MainActivity : ComponentActivity() {
@@ -194,5 +191,20 @@ fun WorldClockPreview(){
         WorldClock()
 }
 
+@Composable
+fun NavHostContainer(
+    navController: NavHostController,
+    padding: PaddingValues
+) {
+    NavHost(
+        navController = navController,
+        startDestination = "Мировые часы",
+        modifier = Modifier
+            .padding(paddingValues = padding),
+        ){
+
+    }
+
+}
 
 
