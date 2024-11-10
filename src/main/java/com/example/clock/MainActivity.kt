@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -49,7 +50,7 @@ fun WorldClock(
     val navController = rememberNavController()
     Scaffold(
         bottomBar = {
-           BottomNavigationBar(navController = navController)
+//           BottomNavigationBar(navController = navController)
         },
      content = { padding ->
     NavHostContainer(navController = navController, padding = padding)
@@ -60,7 +61,8 @@ fun WorldClock(
 
 @Composable
 fun WC(
-    worldClock: String
+    worldClock: String,
+    navController: NavHostController = rememberNavController()
 ){
     Column(
         verticalArrangement = Arrangement.spacedBy(4.dp),
@@ -70,19 +72,20 @@ fun WC(
             painter = painterResource(R.drawable.world_line),
             contentDescription = null
         )
+            Text(
+                text = worldClock,
+                fontSize = 11.sp,
+                color = Color.White,
+                fontFamily = FontFamily(listOf(Font(R.font.montserrat_medium))),
+                fontWeight = FontWeight.Medium
+            )
 
-        Text(
-            text = worldClock,
-            fontSize = 11.sp,
-            color = Color.White,
-            fontFamily = FontFamily(listOf(Font(R.font.montserrat_medium))),
-            fontWeight = FontWeight.Medium,
-        )
     }
 }
 @Composable
 fun AlarmClock(
-    alarmClock: String
+    alarmClock: String,
+    navController: NavHostController = rememberNavController()
 ){
     Column(
         verticalArrangement = Arrangement.spacedBy(4.dp),
@@ -92,19 +95,20 @@ fun AlarmClock(
             painter = painterResource(R.drawable.alarm_clock),
             contentDescription = null
         )
+            Text(
+                text = alarmClock,
+                fontSize = 11.sp,
+                color = Color.White,
+                fontFamily = FontFamily(listOf(Font(R.font.montserrat_medium))),
+                fontWeight = FontWeight.Medium
+            )
 
-        Text(
-            text = alarmClock,
-            fontSize = 11.sp,
-            color = Color.White,
-            fontFamily = FontFamily(listOf(Font(R.font.montserrat_medium))),
-            fontWeight = FontWeight.Medium,
-        )
     }
 }
 @Composable
 fun Stopwatch(
     stopwatch: String,
+    navController: NavHostController = rememberNavController()
 ){
     Column(
         verticalArrangement = Arrangement.spacedBy(4.dp),
@@ -114,18 +118,21 @@ fun Stopwatch(
             painter = painterResource(R.drawable.stopwatch),
             contentDescription = null
         )
-        Text(
-            text = stopwatch,
-            fontSize = 11.sp,
-            color = Color.White,
-            fontFamily = FontFamily(listOf(Font(R.font.montserrat_medium))),
-            fontWeight = FontWeight.Medium,
+
+            Text(
+              text = stopwatch,
+              fontSize = 11.sp,
+              color = Color.White,
+              fontFamily = FontFamily(listOf(Font(R.font.montserrat_medium))),
+              fontWeight = FontWeight.Medium
         )
+
     }
 }
 @Composable
 fun Timer(
     timer: String,
+    navController: NavHostController = rememberNavController()
 ){
     Column(
         verticalArrangement = Arrangement.spacedBy(4.dp),
@@ -135,13 +142,14 @@ fun Timer(
             painter = painterResource(R.drawable.timer),
             contentDescription = null
         )
-        Text(
-            text = timer,
-            fontSize = 11.sp,
-            color = Color.White,
-            fontFamily = FontFamily(listOf(Font(R.font.montserrat_medium))),
-            fontWeight = FontWeight.Medium,
-        )
+            Text(
+                text = timer,
+                fontSize = 11.sp,
+                color = Color.White,
+                fontFamily = FontFamily(listOf(Font(R.font.montserrat_medium))),
+                fontWeight = FontWeight.Medium
+            )
+
     }
 }
 
@@ -188,31 +196,32 @@ fun NavHostContainer(
 
 }
 
-@Composable
-fun BottomNavigationBar(
-    navController: NavHostController
-){
-    BottomNavigation(
-        backgroundColor = Color(0xFF0F9D58)) {
 
-        val navBackStackEntry by navController.currentBackStackEntryAsState()
-
-        val currentRoute = navBackStackEntry?.destination?.route
-
-        Constants.BottomNavItems.forEach { navItem ->
-            BottomNavigationItem(
-                selected = currentRoute == navItem.route,
-                onClick = {
-                    navController.navigate(navItem.route)
-                },
-                label = {
-                    Text(text = navItem.label)
-                },
-                alwaysShowLabel = false
-            )
-        }
-    }
-}
+//    @Composable
+//fun BottomNavigationBar(
+//    navController: NavHostController
+//){
+//    BottomNavigation(
+//        backgroundColor = Color(0xFF0F9D58)) {
+//
+//        val navBackStackEntry by navController.currentBackStackEntryAsState()
+//
+//        val currentRoute = navBackStackEntry?.destination?.route
+//
+//        Constants.BottomNavItems.forEach { navItem ->
+//            BottomNavigationItem(
+//                selected = currentRoute == navItem.route,
+//                onClick = {
+//                    navController.navigate(navItem.route)
+//                },
+//                label = {
+//                    Text(text = navItem.label)
+//                },
+//                alwaysShowLabel = false
+//            )
+//        }
+//    }
+//}
 
 
 
