@@ -5,17 +5,23 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.blur
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
@@ -30,7 +36,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.clock.ui.theme.ClockTheme
-import com.example.clock.ui.theme.Constants
+//import com.example.clock.ui.theme.Constants
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,9 +57,39 @@ fun WorldClock(
     Scaffold(
         bottomBar = {
 //           BottomNavigationBar(navController = navController)
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(
+                        color = Color(0xFF404040)
+                    )
+            ){
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(17.dp, 9.5.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ){
+                    WC(
+                    worldClock = "Мировые часы"
+                    )
+                    AlarmClock(
+                        alarmClock = "Будильник"
+                    )
+                    Stopwatch(
+                        stopwatch = "Секундомер"
+                    )
+                    Timer(
+                        timer = "Таймер"
+                    )
+                }
+            }
         },
-     content = { padding ->
-    NavHostContainer(navController = navController, padding = padding)
+       content =  {
+//           NavHostContainer(navController = navController, padding = it)
+         Box(modifier = Modifier
+         .padding(it))
     }
   )
 }
@@ -61,8 +97,7 @@ fun WorldClock(
 
 @Composable
 fun WC(
-    worldClock: String,
-    navController: NavHostController = rememberNavController()
+    worldClock: String
 ){
     Column(
         verticalArrangement = Arrangement.spacedBy(4.dp),
@@ -84,8 +119,7 @@ fun WC(
 }
 @Composable
 fun AlarmClock(
-    alarmClock: String,
-    navController: NavHostController = rememberNavController()
+    alarmClock: String
 ){
     Column(
         verticalArrangement = Arrangement.spacedBy(4.dp),
@@ -107,8 +141,7 @@ fun AlarmClock(
 }
 @Composable
 fun Stopwatch(
-    stopwatch: String,
-    navController: NavHostController = rememberNavController()
+    stopwatch: String
 ){
     Column(
         verticalArrangement = Arrangement.spacedBy(4.dp),
@@ -131,8 +164,7 @@ fun Stopwatch(
 }
 @Composable
 fun Timer(
-    timer: String,
-    navController: NavHostController = rememberNavController()
+    timer: String
 ){
     Column(
         verticalArrangement = Arrangement.spacedBy(4.dp),
@@ -157,7 +189,10 @@ fun Timer(
 @Preview
 @Composable
 fun WorldClockPreview(){
+    Surface(color = Color(0xFF282323)) {
         WorldClock()
+    }
+
 }
 
 @Composable
