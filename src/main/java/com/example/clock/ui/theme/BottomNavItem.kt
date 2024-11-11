@@ -1,10 +1,11 @@
 package com.example.clock.ui.theme
 
-import android.media.Image
+
+import androidx.compose.ui.graphics.vector.ImageVector
 
 
 data class BottomNavItem(
     val label: String,
-    val image: Image,
+    val icon: ImageVector,
     val route: String
 )

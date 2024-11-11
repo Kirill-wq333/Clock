@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.utils.IMPLEMENTATION
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -50,6 +52,8 @@ android {
 }
 
 dependencies {
+    implementation("androidx.compose.material:material:1.7.5")
+//    implementation("androidx.compose.ui:ui:1.7.5")
     implementation("androidx.navigation:navigation-compose:2.8.2")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

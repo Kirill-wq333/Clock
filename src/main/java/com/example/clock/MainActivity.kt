@@ -13,7 +13,10 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.BottomNavigation
+import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -36,6 +39,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.clock.ui.theme.ClockTheme
+import com.example.clock.ui.theme.Constants
+
 //import com.example.clock.ui.theme.Constants
 
 class MainActivity : ComponentActivity() {
@@ -56,40 +61,10 @@ fun WorldClock(
     val navController = rememberNavController()
     Scaffold(
         bottomBar = {
-//           BottomNavigationBar(navController = navController)
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(
-                        color = Color(0xFF404040)
-                    )
-            ){
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(17.dp, 9.5.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ){
-                    WC(
-                    worldClock = "Мировые часы"
-                    )
-                    AlarmClock(
-                        alarmClock = "Будильник"
-                    )
-                    Stopwatch(
-                        stopwatch = "Секундомер"
-                    )
-                    Timer(
-                        timer = "Таймер"
-                    )
-                }
-            }
+           BottomNavigationBar(navController = navController)
         },
        content =  {
-//           NavHostContainer(navController = navController, padding = it)
-         Box(modifier = Modifier
-         .padding(it))
+           NavHostContainer(navController = navController, padding = it)
     }
   )
 }
@@ -192,7 +167,6 @@ fun WorldClockPreview(){
     Surface(color = Color(0xFF282323)) {
         WorldClock()
     }
-
 }
 
 @Composable
@@ -232,31 +206,34 @@ fun NavHostContainer(
 }
 
 
-//    @Composable
-//fun BottomNavigationBar(
-//    navController: NavHostController
-//){
-//    BottomNavigation(
-//        backgroundColor = Color(0xFF0F9D58)) {
-//
-//        val navBackStackEntry by navController.currentBackStackEntryAsState()
-//
-//        val currentRoute = navBackStackEntry?.destination?.route
-//
-//        Constants.BottomNavItems.forEach { navItem ->
-//            BottomNavigationItem(
-//                selected = currentRoute == navItem.route,
-//                onClick = {
-//                    navController.navigate(navItem.route)
-//                },
-//                label = {
-//                    Text(text = navItem.label)
-//                },
-//                alwaysShowLabel = false
-//            )
-//        }
-//    }
-//}
+    @Composable
+fun BottomNavigationBar(
+    navController: NavHostController
+){
+    BottomNavigation(
+        backgroundColor = Color(0xFF0F9D58)) {
+
+        val navBackStackEntry by navController.currentBackStackEntryAsState()
+
+        val currentRoute = navBackStackEntry?.destination?.route
+
+        Constants.BottomNavItems.forEach { navItem ->
+            BottomNavigationItem(
+                selected = currentRoute == navItem.route,
+                onClick = {
+                    navController.navigate(navItem.route)
+                },
+                label = {
+                    Text(text = navItem.label)
+                },
+                icon = {
+                    Icon(imageVector = navItem.icon, contentDescription = navItem.label)
+                },
+                alwaysShowLabel = false
+            )
+        }
+    }
+}
 
 
 
