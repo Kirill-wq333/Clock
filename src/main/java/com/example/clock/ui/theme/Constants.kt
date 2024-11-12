@@ -1,30 +1,31 @@
 package com.example.clock.ui.theme
 
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.CheckCircle
-import androidx.compose.material.icons.filled.DateRange
+import AlarmClock
+import Stopwatch
+import Timer
+import WorldLine
 
 
 object Constants {
     val BottomNavItems = listOf(
         BottomNavItem(
             label = "Мировые часы",
-            icon = Icons.Filled.CheckCircle,
+            icon = WorldLine,
             route = "мировые часы"
         ),
         BottomNavItem(
             label = "Будильник",
-            icon = Icons.Filled.CheckCircle,
+            icon = AlarmClock,
             route = "будильник"
         ),
         BottomNavItem(
             label = "Секундомер",
-            icon = Icons.Filled.CheckCircle,
+            icon = Stopwatch,
             route = "секундомер"
         ),
         BottomNavItem(
             label = "Таймер",
-            icon = Icons.Filled.CheckCircle,
+            icon = Timer,
             route = "таймер"
         )
     )
