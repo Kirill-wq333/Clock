@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
@@ -60,106 +61,29 @@ fun WorldClock(
 ){
     val navController = rememberNavController()
     Scaffold(
-        bottomBar = {
-           BottomNavigationBar(navController = navController)
+        topBar ={
+            NavContainerTopBar(navController = navController)
         },
-       content =  {
-           NavHostContainer(navController = navController, padding = it)
+        bottomBar = {
+           Column(
+               verticalArrangement = Arrangement.SpaceBetween,
+               horizontalAlignment = Alignment.CenterHorizontally
+               ) {
+               Box(
+                   modifier = Modifier
+                       .fillMaxWidth()
+                       .height(1.dp)
+                       .background(color = Color.White.copy(0.5f))
+               )
+               BottomNavigationBar(navController = navController)
+           }
+        },
+       content =  { padding ->
+//           NavHostContainerBottomBar(navController = navController, padding = padding)
+           Box(modifier = Modifier.padding(padding))
     }
   )
 }
-
-
-@Composable
-fun WC(
-    worldClock: String
-){
-    Column(
-        verticalArrangement = Arrangement.spacedBy(4.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Image(
-            painter = painterResource(R.drawable.world_line),
-            contentDescription = null
-        )
-            Text(
-                text = worldClock,
-                fontSize = 11.sp,
-                color = Color.White,
-                fontFamily = FontFamily(listOf(Font(R.font.montserrat_medium))),
-                fontWeight = FontWeight.Medium
-            )
-
-    }
-}
-@Composable
-fun AlarmClock(
-    alarmClock: String
-){
-    Column(
-        verticalArrangement = Arrangement.spacedBy(4.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Image(
-            painter = painterResource(R.drawable.alarm_clock),
-            contentDescription = null
-        )
-            Text(
-                text = alarmClock,
-                fontSize = 11.sp,
-                color = Color.White,
-                fontFamily = FontFamily(listOf(Font(R.font.montserrat_medium))),
-                fontWeight = FontWeight.Medium
-            )
-
-    }
-}
-@Composable
-fun Stopwatch(
-    stopwatch: String
-){
-    Column(
-        verticalArrangement = Arrangement.spacedBy(4.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Image(
-            painter = painterResource(R.drawable.stopwatch),
-            contentDescription = null
-        )
-
-            Text(
-              text = stopwatch,
-              fontSize = 11.sp,
-              color = Color.White,
-              fontFamily = FontFamily(listOf(Font(R.font.montserrat_medium))),
-              fontWeight = FontWeight.Medium
-        )
-
-    }
-}
-@Composable
-fun Timer(
-    timer: String
-){
-    Column(
-        verticalArrangement = Arrangement.spacedBy(4.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Image(
-            painter = painterResource(R.drawable.timer),
-            contentDescription = null
-        )
-            Text(
-                text = timer,
-                fontSize = 11.sp,
-                color = Color.White,
-                fontFamily = FontFamily(listOf(Font(R.font.montserrat_medium))),
-                fontWeight = FontWeight.Medium
-            )
-
-    }
-}
-
 
 @Preview
 @Composable
@@ -169,49 +93,13 @@ fun WorldClockPreview(){
     }
 }
 
-@Composable
-fun NavHostContainer(
-    navController: NavHostController,
-    padding: PaddingValues
-) {
-    NavHost(
-        navController = navController,
-        startDestination = "Мировые часы",
-        modifier = Modifier
-            .padding(paddingValues = padding),
-        ){
-        composable("Мировое часы") {
-            WC(
-                worldClock = "Мировые часы"
-            )
-        }
-        composable("Будильник") {
-            AlarmClock(
-                alarmClock = "Будильник"
-            )
-        }
-        composable("Секундомер") {
-            Stopwatch(
-                stopwatch = "Секундомер"
-            )
-        }
-        composable("Таймер") {
-            Timer(
-                timer = "Таймер"
-            )
-        }
-
-    }
-
-}
-
-
     @Composable
 fun BottomNavigationBar(
     navController: NavHostController
 ){
     BottomNavigation(
-        backgroundColor = Color(0xFF0F9D58)) {
+        backgroundColor = (Color(0xFF404040))
+        ) {
 
         val navBackStackEntry by navController.currentBackStackEntryAsState()
 
@@ -223,11 +111,14 @@ fun BottomNavigationBar(
                 onClick = {
                     navController.navigate(navItem.route)
                 },
-                label = {
-                    Text(text = navItem.label)
-                },
                 icon = {
                     Icon(imageVector = navItem.icon, contentDescription = navItem.label)
+                },
+                label = {
+                    Text(
+                        text = navItem.label,
+                        fontSize = 11.sp,
+                        )
                 },
                 alwaysShowLabel = false
             )

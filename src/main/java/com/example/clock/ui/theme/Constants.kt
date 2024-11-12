@@ -4,28 +4,30 @@ import AlarmClock
 import Stopwatch
 import Timer
 import WorldLine
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Warning
 
 
 object Constants {
     val BottomNavItems = listOf(
         BottomNavItem(
+            icon = Icons.Filled.Warning,
             label = "Мировые часы",
-            icon = WorldLine,
             route = "мировые часы"
         ),
         BottomNavItem(
+            icon = Icons.Filled.Warning,
             label = "Будильник",
-            icon = AlarmClock,
             route = "будильник"
         ),
         BottomNavItem(
+            icon = Icons.Filled.Warning,
             label = "Секундомер",
-            icon = Stopwatch,
             route = "секундомер"
         ),
         BottomNavItem(
+            icon = Icons.Filled.Warning,
             label = "Таймер",
-            icon = Timer,
             route = "таймер"
         )
     )
