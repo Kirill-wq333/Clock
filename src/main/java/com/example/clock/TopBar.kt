@@ -1,6 +1,7 @@
 package com.example.clock
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -52,16 +53,14 @@ fun WorldClockTopBar(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Button(
-                    onClick = onClick
-                ) {
-                    Text(
-                        text = setting,
-                        fontSize = 11.sp,
-                        fontFamily = FontFamily(listOf(Font(R.font.montserrat_medium))),
-                        fontWeight = FontWeight.Medium
-                    )
-                }
+                Text(
+                    modifier = Modifier
+                        .clickable { onClick() },
+                    text = setting,
+                    fontSize = 11.sp,
+                    fontFamily = FontFamily(listOf(Font(R.font.montserrat_medium))),
+                    fontWeight = FontWeight.Medium
+                )
                 Box(
                     modifier = Modifier
                         .background(
@@ -111,16 +110,14 @@ fun AlarmClockTopBar(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Button(
-                    onClick = onClick
-                ) {
-                    Text(
-                        text = setting,
-                        fontSize = 11.sp,
-                        fontFamily = FontFamily(listOf(Font(R.font.montserrat_medium))),
-                        fontWeight = FontWeight.Medium
-                    )
-                }
+                Text(
+                    modifier = Modifier
+                        .clickable { onClick() },
+                    text = setting,
+                    fontSize = 11.sp,
+                    fontFamily = FontFamily(listOf(Font(R.font.montserrat_medium))),
+                    fontWeight = FontWeight.Medium
+                )
                 Box(
                     modifier = Modifier
                         .background(
@@ -169,16 +166,14 @@ fun StopwatchTopBar(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Button(
-                    onClick = onClick
-                ) {
-                    Text(
-                        text = setting,
-                        fontSize = 11.sp,
-                        fontFamily = FontFamily(listOf(Font(R.font.montserrat_medium))),
-                        fontWeight = FontWeight.Medium
-                    )
-                }
+                Text(
+                    modifier = Modifier
+                        .clickable { onClick() },
+                    text = setting,
+                    fontSize = 11.sp,
+                    fontFamily = FontFamily(listOf(Font(R.font.montserrat_medium))),
+                    fontWeight = FontWeight.Medium
+                )
                 Box(
                     modifier = Modifier
                         .background(
@@ -227,16 +222,14 @@ fun TimerTopBar(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Button(
-                    onClick = onClick
-                ) {
-                    Text(
-                        text = setting,
-                        fontSize = 11.sp,
-                        fontFamily = FontFamily(listOf(Font(R.font.montserrat_medium))),
-                        fontWeight = FontWeight.Medium
-                    )
-                }
+                Text(
+                    modifier = Modifier
+                        .clickable { onClick() },
+                    text = setting,
+                    fontSize = 11.sp,
+                    fontFamily = FontFamily(listOf(Font(R.font.montserrat_medium))),
+                    fontWeight = FontWeight.Medium
+                )
                 Box(
                     modifier = Modifier
                         .background(
