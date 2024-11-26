@@ -32,9 +32,40 @@ fun NavigateBottomBar(
         val navBackStackEntry = navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry.value?.destination?.route
 
+        BottomItem(
+            selected = currentRoute == "WorldClock",
+            onClick = { navController.navigate("WorldClock") },
+            nameBottom = "Мировые часы"
+        )
+        BottomItem(
+            selected = currentRoute == "AlarmClock",
+            onClick = { navController.navigate("AlarmClock") },
+            nameBottom = "Будильник"
+        )
+        BottomItem(
+            selected = currentRoute == "Stopwatch",
+            onClick = { navController.navigate("Stopwatch") },
+            nameBottom = "Секундомер"
+        )
+        BottomItem(
+            selected = currentRoute == "Timer",
+            onClick = { navController.navigate("Timer") },
+            nameBottom = "Таймер"
+        )
+    }
+}
+
+
+@Composable
+fun BottomItem(
+    selected: Boolean,
+    onClick: () -> Unit,
+    nameBottom: String
+) {
+    BottomNavigation {
         BottomNavigationItem(
-            selected = currentRoute == "Мировые часы",
-            onClick = { navController.navigate("Мировые часы")},
+            selected = selected,
+            onClick = { onClick() },
             icon = {
                 Icon(
                     imageVector = ImageVector.vectorResource(R.drawable.world_line),
@@ -43,64 +74,7 @@ fun NavigateBottomBar(
             },
             label = {
                 Text(
-                    text = "Мировые часы",
-                    fontSize = 11.sp,
-                    fontFamily = FontFamily(listOf(Font(R.font.montserrat_medium))),
-                    fontWeight = FontWeight.Medium
-                )
-            },
-            alwaysShowLabel = false
-        )
-        BottomNavigationItem(
-            selected = currentRoute == "Будильник",
-            onClick = { navController.navigate("Будильник")},
-            icon = {
-                Icon(
-                    imageVector = ImageVector.vectorResource(R.drawable.alarm_clock),
-                    contentDescription = null
-                )
-            },
-            label = {
-                Text(
-                    text = "Будильник",
-                    fontSize = 11.sp,
-                    fontFamily = FontFamily(listOf(Font(R.font.montserrat_medium))),
-                    fontWeight = FontWeight.Medium
-                )
-            },
-            alwaysShowLabel = false
-        )
-        BottomNavigationItem(
-            selected = currentRoute == "Секундомер",
-            onClick = { navController.navigate("Секундомер")},
-            icon = {
-                Icon(
-                    imageVector = ImageVector.vectorResource(R.drawable.stopwatch),
-                    contentDescription = null
-                )
-            },
-            label = {
-                Text(
-                    text = "Секундомер",
-                    fontSize = 11.sp,
-                    fontFamily = FontFamily(listOf(Font(R.font.montserrat_medium))),
-                    fontWeight = FontWeight.Medium
-                )
-            },
-            alwaysShowLabel = false
-        )
-        BottomNavigationItem(
-            selected = currentRoute == "Таймер",
-            onClick = { navController.navigate("Таймер")},
-            icon = {
-                Icon(
-                    imageVector = ImageVector.vectorResource(R.drawable.timer),
-                    contentDescription = null
-                )
-            },
-            label = {
-                Text(
-                    text = "Таймер",
+                    text = nameBottom,
                     fontSize = 11.sp,
                     fontFamily = FontFamily(listOf(Font(R.font.montserrat_medium))),
                     fontWeight = FontWeight.Medium
@@ -110,7 +84,6 @@ fun NavigateBottomBar(
         )
     }
 }
-
 
 
 

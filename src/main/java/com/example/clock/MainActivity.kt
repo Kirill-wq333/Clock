@@ -21,8 +21,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.clock.ui.alarmClock.AlarmClockScreen
+import com.example.clock.ui.stopswatch.StopwatchScreen
 import com.example.clock.ui.theme.ClockTheme
+import com.example.clock.ui.timer.TimerScreen
+import com.example.clock.ui.worldClock.WorldClockScreen
 
 
 class MainActivity : ComponentActivity() {
@@ -39,21 +45,36 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun WorldClock(
-){
+) {
     val navController = rememberNavController()
     Scaffold(
-        topBar ={
-            NavContainerTopBar(navController = navController)
-        },
-        bottomBar = {
-            NavigateBottomBar(navController = navController)
-
-        },
-       content =  { padding ->
-           Box(modifier = Modifier
-               .padding(padding))
-    }
-  )
+        bottomBar = { NavigateBottomBar(navController = navController) },
+        content = { padding ->
+            Box(
+                modifier = Modifier
+                    .padding(padding)
+            ) {
+                NavHost(
+                    navController = navController,
+                    startDestination = "WorldClock",
+                    modifier = Modifier
+                ) {
+                    composable("WorldClock") {
+                        WorldClockScreen()
+                    }
+                    composable("AlarmClock") {
+                        AlarmClockScreen()
+                    }
+                    composable("Stopwatch") {
+                        StopwatchScreen()
+                    }
+                    composable("Timer") {
+                        TimerScreen()
+                    }
+                }
+            }
+        }
+    )
 }
 
 @Preview
