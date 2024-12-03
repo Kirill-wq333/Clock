@@ -5,7 +5,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.vectorResource
 import com.example.clock.Header
+import com.example.clock.R
 
 @Composable
 fun WorldClockScreen(
@@ -15,7 +18,8 @@ fun WorldClockScreen(
         topBar = {
             Header(
                 nameClock = "Мировые часы",
-                onClick = {}
+                items = listOf("Редакт.", "Настройки"),
+                iconMore = ImageVector.vectorResource(R.drawable.more)
             )
         }
     ) { padding ->

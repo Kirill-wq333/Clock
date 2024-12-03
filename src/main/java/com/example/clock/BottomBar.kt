@@ -1,6 +1,7 @@
 package com.example.clock
 
 
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
@@ -35,41 +36,46 @@ fun NavigateBottomBar(
         BottomItem(
             selected = currentRoute == "WorldClock",
             onClick = { navController.navigate("WorldClock") },
-            nameBottom = "Мировые часы"
+            nameBottom = "Мировые часы",
+            icon = ImageVector.vectorResource(R.drawable.world_line)
         )
         BottomItem(
             selected = currentRoute == "AlarmClock",
             onClick = { navController.navigate("AlarmClock") },
-            nameBottom = "Будильник"
+            nameBottom = "Будильник",
+            icon = ImageVector.vectorResource(R.drawable.alarm_clock)
         )
         BottomItem(
             selected = currentRoute == "Stopwatch",
             onClick = { navController.navigate("Stopwatch") },
-            nameBottom = "Секундомер"
+            nameBottom = "Секундомер",
+            icon = ImageVector.vectorResource(R.drawable.stopwatch)
         )
         BottomItem(
             selected = currentRoute == "Timer",
             onClick = { navController.navigate("Timer") },
-            nameBottom = "Таймер"
+            nameBottom = "Таймер",
+            icon = ImageVector.vectorResource(R.drawable.timer)
         )
     }
 }
 
 
 @Composable
-fun BottomItem(
+fun RowScope.BottomItem(
     selected: Boolean,
     onClick: () -> Unit,
-    nameBottom: String
+    nameBottom: String,
+    icon: ImageVector
 ) {
-    BottomNavigation {
         BottomNavigationItem(
             selected = selected,
             onClick = { onClick() },
             icon = {
                 Icon(
-                    imageVector = ImageVector.vectorResource(R.drawable.world_line),
-                    contentDescription = null
+                    imageVector = icon,
+                    contentDescription = null,
+                    tint = if (selected) Color.Black else Color.DarkGray
                 )
             },
             label = {
@@ -82,7 +88,7 @@ fun BottomItem(
             },
             alwaysShowLabel = false
         )
-    }
+
 }
 
 
