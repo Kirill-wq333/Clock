@@ -14,10 +14,19 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.FabPosition
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
 
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
@@ -37,18 +46,25 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             ClockTheme {
-                WorldClock()
+                Clock()
             }
         }
     }
 }
 
 @Composable
-fun WorldClock(
+fun Clock(
 ) {
+    var presses by remember { mutableIntStateOf(0) }
     val navController = rememberNavController()
     Scaffold(
         bottomBar = { NavigateBottomBar(navController = navController) },
+        floatingActionButtonPosition = FabPosition.Center,
+        floatingActionButton = {
+            FloatingActionButton(onClick = { presses++ }) {
+                Icon(Icons.Default.Add, contentDescription = "Add")
+            }
+        },
         content = { padding ->
             Box(
                 modifier = Modifier
@@ -81,7 +97,7 @@ fun WorldClock(
 @Composable
 fun WorldClockPreview(){
     Surface(color = Color(0xFF282323)) {
-        WorldClock()
+        Clock()
     }
 }
 

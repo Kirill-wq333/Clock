@@ -4,9 +4,10 @@ package com.example.clock
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -24,11 +25,8 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 fun NavigateBottomBar(
     navController: NavHostController,
 ){
-    BottomNavigation(
-        backgroundColor = (Color.White),
-        elevation = 10.dp,
-        modifier = Modifier
-            .padding(bottom = 40.dp)
+    NavigationBar(
+        containerColor = Color.DarkGray,
     ){
         val navBackStackEntry = navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry.value?.destination?.route
@@ -68,19 +66,20 @@ fun RowScope.BottomItem(
     nameBottom: String,
     icon: ImageVector
 ) {
-        BottomNavigationItem(
+        NavigationBarItem(
             selected = selected,
             onClick = { onClick() },
             icon = {
                 Icon(
                     imageVector = icon,
                     contentDescription = null,
-                    tint = if (selected) Color.Black else Color.DarkGray
+                    tint = if (selected) Color.LightGray else Color.White
                 )
             },
             label = {
                 Text(
                     text = nameBottom,
+                    color = if (selected) Color.LightGray else Color.White,
                     fontSize = 11.sp,
                     fontFamily = FontFamily(listOf(Font(R.font.montserrat_medium))),
                     fontWeight = FontWeight.Medium
